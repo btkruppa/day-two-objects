@@ -41,8 +41,7 @@ interface IRational {
 	default IRational negate() {
 		int numerator = getNumerator();
 		int denomenator = getDenominator();
-		numerator *= -1;
-		return construct(numerator, denomenator);
+		return construct(numerator * -1, denomenator);
 	}
 
 	/**
@@ -55,7 +54,7 @@ interface IRational {
 	 *             if the numerator of this rational value is 0
 	 */
 	default IRational invert() throws IllegalStateException {
-		if(getNumerator() == 0) {
+		if (getNumerator() == 0) {
 			throw new IllegalStateException();
 		}
 		int numerator = getDenominator();
@@ -76,19 +75,16 @@ interface IRational {
 	 *             if that is null
 	 */
 	default IRational add(IRational that) throws IllegalArgumentException {
-		if(that == null) {
+		if (that == null) {
 			throw new IllegalArgumentException();
 		}
 		int n1 = getNumerator();
 		int d1 = getDenominator();
-		
+
 		int n2 = that.getNumerator();
 		int d2 = that.getDenominator();
-		
-		int numerator = ((n1*d2) + (n2 * d1));
-		int denomenator = (d1*d2);
-		
-		return construct(numerator, denomenator);
+
+		return construct(n1 * d2 + n2 * d1, d1 * d2);
 	}
 
 	/**
@@ -103,19 +99,16 @@ interface IRational {
 	 *             if that is null
 	 */
 	default IRational sub(IRational that) throws IllegalArgumentException {
-		if(that == null) {
+		if (that == null) {
 			throw new IllegalArgumentException();
 		}
 		int n1 = getNumerator();
 		int d1 = getDenominator();
-		
+
 		int n2 = that.getNumerator();
 		int d2 = that.getDenominator();
-		
-		int numerator = (n1*d2) - (n2*d1);
-		int denomenator = d1*d2;
-		
-		return construct(numerator, denomenator);
+
+		return construct((n1 * d2) - (n2 * d1), d1 * d2);
 	}
 
 	/**
@@ -130,19 +123,16 @@ interface IRational {
 	 *             if that is null
 	 */
 	default IRational mul(IRational that) throws IllegalArgumentException {
-		if(that == null) {
+		if (that == null) {
 			throw new IllegalArgumentException();
 		}
 		int n1 = getNumerator();
 		int d1 = getDenominator();
-		
+
 		int n2 = that.getNumerator();
 		int d2 = that.getDenominator();
-		
-		int numerator = n1*n2;
-		int denomenator = d1*d2;
-		
-		return construct(numerator, denomenator);
+
+		return construct(n1 * n2, d1 * d2);
 	}
 
 	/**
@@ -157,18 +147,15 @@ interface IRational {
 	 *             if that is null or if the numerator of that is 0
 	 */
 	default IRational div(IRational that) throws IllegalArgumentException {
-		if(that == null) {
+		if (that == null) {
 			throw new IllegalArgumentException();
 		}
 		int n1 = getNumerator();
 		int d1 = getDenominator();
-		
+
 		int n2 = that.getNumerator();
 		int d2 = that.getDenominator();
-		
-		int numerator = n1*d2;
-		int denomenator = d1*n2;
-		
-		return construct(numerator, denomenator);
+
+		return construct(n1 * d2, d1 * n2);
 	}
 }

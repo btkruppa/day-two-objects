@@ -137,15 +137,11 @@ public class SimplifiedRational implements IRational {
 			int n2 = myObj.getNumerator();
 			int d2 = myObj.getDenominator();
 
-			if (d2 == 0) {
-				return false;
-			}
-			if ((numerator == n2 && denominator == d2)) {
+			if ((numerator == n2 && denominator == d2) && d2 != 0)
 				return true;
-			} else
-				return false;
-		} else
-			return false;
+			else return false;
+		}
+		return false;
 	}
 
 	/**
