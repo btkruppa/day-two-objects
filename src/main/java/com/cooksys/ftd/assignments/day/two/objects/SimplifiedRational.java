@@ -20,8 +20,9 @@ public class SimplifiedRational implements IRational {
 		if (a <= 0 || b < 0)
 			throw new IllegalArgumentException();
 		else {
-			if(a == 0 || b == 0) return a+b; // base case
-			  return gcd(b,a%b);
+			if (a == 0 || b == 0)
+				return a + b; // base case
+			return gcd(b, a % b);
 		}
 	}
 
@@ -43,46 +44,16 @@ public class SimplifiedRational implements IRational {
 		if (denominator == 0) {
 			throw new IllegalArgumentException("Denominator cannot be 0");
 		} else {
-			
-			int[] simplified = new int[2];
-			if(numerator == 0) {
-				
-			}
-			boolean numFlag = false;
-			boolean denomFlag = false;
-			if (numerator < 0) {
-				numFlag = true;
-				numerator *= -1;
-			}
-			
-			if(denominator < 0) {
-				denomFlag = true;
-				denominator *= -1;
-			}
-			
-			int[] result = new int[2];
-			result[0] = numerator;
-			result[1] = denominator;
 
+			int[] simplified = new int[] { numerator, denominator };
 			if (numerator == 0) {
+				return simplified;
 			} else {
-				int gcm = 0;
-				while (gcm != 1) {
-					gcm = gcd(result[0], result[1]);
-					result[0] /= gcm;
-					result[1] /= gcm;
-				}
+				int gcm = gcd(Math.abs(numerator), Math.abs(denominator));
+				simplified[0] /=  gcm;
+				simplified[1] /= gcm;
+				return simplified;
 			}
-			
-			if(numFlag) {
-				result[0] *= -1;
-			}
-			
-			if(denomFlag) {
-				result[1] *= -1;
-			}
-			
-			return result;
 		}
 	}
 
@@ -106,28 +77,6 @@ public class SimplifiedRational implements IRational {
 			throw new IllegalArgumentException();
 		else {
 			int[] simplified = simplify(numerator, denominator);
-//			if(numerator == 0) {
-//				
-//			}
-//			if (numerator < 0) {
-//				if (denominator < 0) {
-//					simplified = simplify(-1 * numerator, -1 * denominator);
-//					simplified[0] *= -1;
-//					simplified[1] *= -1;
-//				} else {
-//					simplified = simplify(-1 * numerator, denominator);
-//					simplified[0] *= -1;
-//				}
-//			}
-//			else { 
-//				if(denominator < 0) {
-//					simplified = simplify(numerator, -1* denominator);
-//					simplified[1] *= -1;
-//				}
-//				else {
-//					simplified = simplify(numerator, denominator);
-//				}
-//			}
 
 			this.numerator = simplified[0];
 			this.denominator = simplified[1];
