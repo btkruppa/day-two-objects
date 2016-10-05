@@ -3,7 +3,6 @@ package com.cooksys.ftd.assignments.day.two.objects;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 interface IRational {
-
 	/**
 	 * @return the numerator of this rational number
 	 */
@@ -57,10 +56,8 @@ interface IRational {
 		if (getNumerator() == 0) {
 			throw new IllegalStateException();
 		}
-		int numerator = getDenominator();
-		int denomenator = getNumerator();
 
-		return construct(numerator, denomenator);
+		return construct(getDenominator(), getNumerator());
 	}
 
 	/**
@@ -147,7 +144,7 @@ interface IRational {
 	 *             if that is null or if the numerator of that is 0
 	 */
 	default IRational div(IRational that) throws IllegalArgumentException {
-		if (that == null) {
+		if (that == null || that.getNumerator() == 0) {
 			throw new IllegalArgumentException();
 		}
 		int n1 = getNumerator();

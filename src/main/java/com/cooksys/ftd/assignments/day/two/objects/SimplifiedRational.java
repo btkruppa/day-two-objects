@@ -50,7 +50,7 @@ public class SimplifiedRational implements IRational {
 				return simplified;
 			} else {
 				int gcm = gcd(Math.abs(numerator), Math.abs(denominator));
-				simplified[0] /=  gcm;
+				simplified[0] /= gcm;
 				simplified[1] /= gcm;
 				return simplified;
 			}
@@ -139,7 +139,8 @@ public class SimplifiedRational implements IRational {
 
 			if ((numerator == n2 && denominator == d2) && d2 != 0)
 				return true;
-			else return false;
+			else
+				return false;
 		}
 		return false;
 	}
@@ -149,7 +150,7 @@ public class SimplifiedRational implements IRational {
 	 * `numerator/denominator`
 	 * <p>
 	 * If this is negative, the string should be of the form
-	 * `-numerator/denominator`
+	 * `-numerator/denominator` 
 	 *
 	 * @return a string representation of this rational value
 	 */

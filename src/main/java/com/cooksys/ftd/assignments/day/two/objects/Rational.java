@@ -79,9 +79,6 @@ public class Rational implements IRational {
 			int n2 = myObj.getNumerator();
 			int d2 = myObj.getDenominator();
 
-			if (d2 == 0) {
-				return false;
-			}
 			if ((numerator == n2 && denominator == d2)) {
 				return true;
 			} else
